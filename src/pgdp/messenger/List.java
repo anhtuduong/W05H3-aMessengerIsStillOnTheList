@@ -143,7 +143,7 @@ public class List {
 			if (input[i] == null) {
 				continue;
 			}
-			
+
 		}
 
 		// Merge
@@ -162,8 +162,25 @@ public class List {
 	 * @return Die gefilterte Liste
 	 */
 	public List filterDays(LocalDateTime start, LocalDateTime end) {
-		// TODO: Implementiere diese Methode
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		List result = new List();
+		ListElement current = head;
+		while (current != null) {
+			if (current.getMessage().getTimestamp().isAfter(start)) {
+				result.head = current;
+				break;
+			}
+		}
+
+		while (current != null) {
+			if (current.getMessage().getTimestamp().isAfter(end)) {
+				result.tail = current;
+				break;
+			}
+		}
+		return result;
 	}
 
 	/** Gibt eine neue Liste zurück, die alle Messages dieser Liste, deren Nutzer gleich 'user' ist, enthält.
