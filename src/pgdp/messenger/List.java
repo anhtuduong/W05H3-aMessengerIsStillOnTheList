@@ -108,7 +108,21 @@ public class List {
 	 * @return Die gefundene Message oder 'null'
 	 */
 	public Message getByID(long id) {
-		// TODO: Implementiere diese Methode
+		// Check if list is empty
+		if (isEmpty()) {
+			return null;
+		}
+
+		// Find ID
+		ListElement current = head;
+		do {
+			if (current.getMessage().getId() == id) {
+				return current.getMessage();
+			}
+			current = current.getNext();
+		}
+		while (current != null);
+
 		return null;
 	}
 
