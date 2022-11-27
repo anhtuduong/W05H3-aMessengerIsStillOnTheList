@@ -112,7 +112,6 @@ public class List {
 		if (isEmpty()) {
 			return null;
 		}
-
 		// Find ID
 		ListElement current = head;
 		do {
@@ -131,8 +130,29 @@ public class List {
 	 * @return Die gemergte Liste
 	 */
 	public static List megaMerge(List... input) {
+		if (input.length == 0) {
+			return null;
+		}
+		if (input.length == 1) {
+			return input[0];
+		}
 
-		return null;
+		// Concatenate lists
+		List result = new List();
+		for (int i = 0; i < input.length - 1; i++) {
+			if (input[i] == null) {
+				continue;
+			}
+			
+		}
+
+		// Merge
+		ListElement current = result.head;
+		while (current.getNext() != null) {
+
+		}
+
+		return result;
 	}
 
 	/** Gibt eine neue Liste zurück, die alle Messages dieser Liste, deren Time-Stamp zwischen 'start' (inklusive)
