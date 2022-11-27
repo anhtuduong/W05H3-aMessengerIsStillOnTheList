@@ -172,6 +172,7 @@ public class List {
 				result.head = current;
 				break;
 			}
+			current = current.getNext();
 		}
 
 		while (current != null) {
@@ -179,6 +180,7 @@ public class List {
 				result.tail = current;
 				break;
 			}
+			current = current.getNext();
 		}
 		return result;
 	}
@@ -188,8 +190,19 @@ public class List {
 	 * @return Die gefilterte Liste
 	 */
 	public List filterUser(User user) {
-		// TODO: Implementiere diese Methode
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+
+		List result = new List();
+		ListElement current = head;
+		while (current != null) {
+			if (current.getMessage().getAuthor() == user) {
+				result.add(current.getMessage());
+			}
+			current = current.getNext();
+		}
+		return result;
 	}
 
 	/** Gibt eine String-Repräsentation dieser Liste zurück. Dabei werden die String-Repräsentationen der einzelnen
