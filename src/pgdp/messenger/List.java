@@ -131,7 +131,7 @@ public class List {
 	 * @return Die gemergte Liste
 	 */
 	public static List megaMerge(List... input) {
-		// TODO: Implementiere diese Methode
+
 		return null;
 	}
 
@@ -160,7 +160,13 @@ public class List {
 	 * @return Die String-Repräsentation dieser Liste.
 	 */
 	public String toString() {
-		// TODO: Implementiere diese Methode
-		return null;
+		String result = "";
+		ListElement current = head;
+		while (current != null) {
+			result += current.getMessage().toString();
+			result += '\n';
+			current = current.getNext();
+		}
+		return result;
 	}
 }
