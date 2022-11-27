@@ -1,17 +1,47 @@
 package pgdp.messenger;
 
 public class UserArray {
-	// TODO: Implementiere die fehlenden Attribute
+	private User[] users;
+	private int capacity, size;
 
 	public UserArray(int initCapacity) {
-		// TODO: Implementiere den Konstruktor
+		if (initCapacity < 1) {
+			capacity = 1;
+		}
+		else {
+			capacity = initCapacity;
+		}
+		users = new User[capacity];
+		size = 0;
 	}
 
 	/** Fügt den übergebenen Nutzer in das durch dieses Objekt dargestellte 'UserArray' ein
 	 * @param user Eine beliebige User-Referenz (schließt 'null' mit ein)
 	 */
 	public void addUser(User user) {
-		// TODO: Implementiere diese Methode!
+		if (user != null) {
+
+			// Check if array is full
+			if (size == capacity) {
+				// Double the capacity
+				capacity *= 2;
+				// Transfer current array to a new bigger one
+				User[] temp = users;
+				users = new User[capacity];
+				for (int i = 0; i < size; ++i) {
+					users[i] = temp[i];
+				}
+			}
+
+			// Add user
+			for (int i = 0; i < capacity; i++) {
+				if (users[i] == null) {
+					users[i] = user;
+					size++;
+					break;
+				}
+			}
+		}
 	}
 
 	/** Entfernt den Nutzer mit der übergebenen ID aus dem Array und gibt diesen zurück.
@@ -20,9 +50,18 @@ public class UserArray {
 	 * @return Der eben aus dem UserArray entfernte Nutzer, wenn ein Nutzer mit der übergebenen id darin existiert, sonst 'null'
 	 */
 	public User deleteUser(long id) {
-		// TODO: Implementiere diese Methode!
+		for (int i = 0; i < capacity; i++) {
+			if (users[i].getId() == id) {
+				User result = users[i];
+				users[i] = null;
+				size--;
+				return result;
+			}
+		}
 		return null;
 	}
 
-	// TODO: Implementiere die fehlenden Methoden!
+	public int size() {
+		return size;
+	}
 }
